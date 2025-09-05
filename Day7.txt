@@ -1,0 +1,118 @@
+Day 7 is going to complete your To-Do CLI app and get it version-controlled on GitHub. Here’s your detailed task plan:
+
+📌 Day 7 – Complete To-Do CLI App + GitHub Push
+
+Date: 2025-09-08
+Goal: Extend CLI app with update, delete, mark done, and push to GitHub.
+
+✅ Tasks to Do Today
+
+Extend To-Do CLI App
+Open todo.js and add new features:
+
+const fs = require("fs");
+const file = "todos.json";
+
+if (!fs.existsSync(file)) {
+  fs.writeFileSync(file, JSON.stringify([]));
+}
+
+const readTodos = () => JSON.parse(fs.readFileSync(file));
+const saveTodos = (todos) => fs.writeFileSync(file, JSON.stringify(todos, null, 2));
+
+
+// Add
+const addTask = (task) => {
+const todos = readTodos();
+todos.push({ task, done: false });
+saveTodos(todos);
+console.log("✅ Task added:", task);
+};
+
+// List
+const listTasks = () => {
+const todos = readTodos();
+if (todos.length === 0) return console.log("No tasks yet.");
+todos.forEach((t, i) => console.log(${i + 1}. ${t.task} [${t.done ? "✔" : "❌"}]));
+};
+
+// Update
+const updateTask = (index, newTask) => {
+const todos = readTodos();
+if (index < 1 || index > todos.length) return console.log("Invalid index.");
+todos[index - 1].task = newTask;
+saveTodos(todos);
+console.log("✏ Task updated.");
+};
+
+// Delete
+const deleteTask = (index) => {
+const todos = readTodos();
+if (index < 1 || index > todos.length) return console.log("Invalid index.");
+const removed = todos.splice(index - 1, 1);
+saveTodos(todos);
+console.log("🗑 Task deleted:", removed[0].task);
+};
+
+// Mark Done
+const markDone = (index) => {
+const todos = readTodos();
+if (index < 1 || index > todos.length) return console.log("Invalid index.");
+todos[index - 1].done = true;
+saveTodos(todos);
+console.log("✔ Task marked as done.");
+};
+
+// CLI commands
+const [,, cmd, ...args] = process.argv;
+if (cmd === "add") addTask(args.join(" "));
+else if (cmd === "list") listTasks();
+else if (cmd === "update") updateTask(Number(args[0]), args.slice(1).join(" "));
+else if (cmd === "delete") deleteTask(Number(args[0]));
+else if (cmd === "done") markDone(Number(args[0]));
+else console.log("Usage: node todo.js add|list|update|delete|done");
+
+
+---
+
+2. **Test Your CLI App**  
+Run in terminal:  
+```bash
+node todo.js add "Learn Node.js"
+node todo.js add "Practice async/await"
+node todo.js list
+node todo.js update 2 "Practice Promises & async/await"
+node todo.js done 1
+node todo.js delete 2
+node todo.js list
+
+
+Push to GitHub
+
+Initialize git:
+
+git init
+git add .
+git commit -m "Day 7: Complete To-Do CLI App"
+
+
+Create a new GitHub repo (e.g., todo-cli-nodejs).
+
+Connect and push:
+
+git remote add origin https://github.com/<your-username>/todo-cli-nodejs.git
+git branch -M main
+git push -u origin main
+
+
+Mini Task
+
+Add at least 5 tasks.
+
+Update 1 task, mark 2 as done, delete 1.
+
+Confirm changes persist in todos.json.
+
+Push project to GitHub.
+
+📌 End of Day 7 → You’ll have a fully functional CLI To-Do app with CRUD + done status ✅, and your first Node.js project on GitHub.

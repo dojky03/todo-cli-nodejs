@@ -1,0 +1,18 @@
+[
+  {
+    "task": "Learn Node.js",
+    "done": true
+  },
+  {
+    "task": "Practice Promises & async/await",
+    "done": false
+  },
+  {
+    "task": "Study HTTP server",
+    "done": true
+  },
+  {
+    "task": "Push to GitHub",
+    "done": false
+  }
+]
