@@ -5,7 +5,7 @@
   },
   {
     "task": "Practice Promises & async/await",
-    "done": false
+    "done": true
   },
   {
     "task": "Study HTTP server",
@@ -13,6 +13,10 @@
   },
   {
     "task": "Push to GitHub",
-    "done": false
+    "done": true
+  },
+  {
+    "task": "buy milk",
+    "done": true
   }
 ]
